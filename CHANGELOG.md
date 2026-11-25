@@ -33,5 +33,3 @@ Initial public release.
   `inert`/`aria-hidden` for collapsed bodies, `role="alert"` error state,
   accent focus-visible rings and `prefers-reduced-motion` support.
 - Stylesheet export at `@simon_he/timeline-ui/style.css`.
-
-[0.1.0]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.0
