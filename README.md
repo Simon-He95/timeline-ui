@@ -184,3 +184,8 @@ in [RELEASING.md](https://github.com/Simon-He95/timeline-ui/blob/main/RELEASING.
 
 MIT. Copyright 2026 Simon He. See [LICENSE](https://github.com/Simon-He95/timeline-ui/blob/main/LICENSE) and
 [THIRD_PARTY_NOTICES.md](https://github.com/Simon-He95/timeline-ui/blob/main/THIRD_PARTY_NOTICES.md).
+
+The Lab and Docs use Gentleface animated icons (MIT, copyright 2026 Alexander
+Kiselev, original designer `eric8810`) and a CC BY-SA 2.5 / GFDL Wikipe-tan
+crop. The deployed demo exposes the full notices at
+[third-party-notices.html](https://timeline-ui.pages.dev/third-party-notices.html).

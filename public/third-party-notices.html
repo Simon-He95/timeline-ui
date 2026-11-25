@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Third-party notices | Timeline UI</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --ink: #16191d;
+        --muted: #68707a;
+        --line: #dfe3e8;
+        --paper: #ffffff;
+        --wash: #f7f8fa;
+        --accent: #0f6bce;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #f4f6f8;
+          --muted: #9aa4af;
+          --line: #2c333b;
+          --paper: #121519;
+          --wash: #1a1f25;
+          --accent: #79b8ff;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--wash);
+        color: var(--ink);
+        font: 15px/1.65 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 56px 24px 80px;
+      }
+
+      header,
+      section {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--paper);
+        padding: 24px 26px;
+      }
+
+      section {
+        margin-top: 16px;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      p {
+        margin: 12px 0 0;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .meta {
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      code {
+        font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+        font-size: 0.92em;
+      }
+
+      pre {
+        overflow: auto;
+        margin: 18px 0 0;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--wash);
+        font: 12px/1.6 ui-monospace, "SFMono-Regular", Menlo, monospace;
+        white-space: pre-wrap;
+      }
+
+      .back {
+        display: inline-block;
+        margin-top: 20px;
+        font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Timeline UI</p>
+        <h1>Third-party notices</h1>
+        <p class="meta">
+          Attribution for third-party visual assets used by the Lab and Docs demo.
+          The published <code>@simon_he/timeline-ui</code> package does not include
+          these demo assets.
+        </p>
+        <a class="back" href="/">Back to Timeline UI</a>
+      </header>
+
+      <section>
+        <h2>Gentleface animated icons</h2>
+        <p>
+          The Lab and Docs use animated SVG icons under
+          <code>src/playground/glyph/</code>.
+        </p>
+        <p>
+          Copyright (c) 2026 Alexander Kiselev.<br />
+          Original designer: <code>eric8810</code>.
+        </p>
+        <p>
+          Licensed under the MIT License. The upstream notice is also available at
+          <a href="https://github.com/Simon-He95/timeline-ui/blob/main/src/playground/glyph/assets/LICENSE.txt">
+            src/playground/glyph/assets/LICENSE.txt
+          </a>.
+        </p>
+        <pre>MIT License
+
+Copyright (c) 2026 Alexander Kiselev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre>
+        <p class="meta">
+          No brand icons from the set are used. The upstream notice also documents
+          trademark terms for those separate brand assets.
+        </p>
+      </section>
+
+      <section>
+        <h2>Wikipe-tan image</h2>
+        <p>
+          Wikipe-tan by Kasuga, via Wikimedia Commons. The demo uses a square crop
+          in the mock image result.
+        </p>
+        <p>
+          <a href="https://commons.wikimedia.org/wiki/File:Wikipe-tan_full_length.png">
+            Source file
+          </a>
+          <br />
+          Licensed under
+          <a href="https://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA 2.5</a>
+          and the
+          <a href="https://www.gnu.org/copyleft/fdl.html">GFDL</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Other demo dependencies</h2>
+        <p>
+          The Lab also bundles <code>markstream-vue</code> and
+          <code>stream-diffs</code> as development dependencies. They are not
+          exported from the library entry or included in the published component
+          package.
+        </p>
+        <p class="meta">
+          The complete repository notice is in
+          <a href="https://github.com/Simon-He95/timeline-ui/blob/main/THIRD_PARTY_NOTICES.md">
+            THIRD_PARTY_NOTICES.md
+          </a>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

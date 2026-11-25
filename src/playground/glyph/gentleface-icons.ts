@@ -1,5 +1,6 @@
 // Gentleface animated icons, MIT License.
-// Copyright (c) 2026 Alexander Kiselev. See assets/LICENSE.txt.
+// Copyright (c) 2026 Alexander Kiselev. Original designer: eric8810.
+// See assets/LICENSE.txt.
 import atomOrbit from './assets/atom-orbit.svg?raw'
 import bellRing from './assets/bell-ring.svg?raw'
 import bookOpenTurn from './assets/book-open-turn.svg?raw'

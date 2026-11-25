@@ -40,6 +40,7 @@
         GitHub
         <span aria-hidden="true">↗</span>
       </a>
+      <a class="topbar__github" href="/third-party-notices.html">Notices</a>
     </header>
 
     <template v-if="view === 'lab'">
