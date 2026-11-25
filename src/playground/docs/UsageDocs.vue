@@ -13,7 +13,9 @@
           <a href="#theming">Theming</a>
         </nav>
         <div class="docs__toc-foot">
-          <span>@simon_he/timeline-ui</span>
+          <a href="https://www.npmjs.com/package/@simon_he/timeline-ui" target="_blank" rel="noreferrer">
+            @simon_he/timeline-ui
+          </a>
           <span>v0.1.0</span>
         </div>
       </aside>
@@ -401,6 +403,15 @@ const themeCode = `<TimelineGroup
   color: var(--wb-faint);
   font-family: var(--wb-mono);
   font-size: 9.5px;
+}
+
+.docs__toc-foot a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.docs__toc-foot a:hover {
+  color: var(--wb-ink);
 }
 
 .docs__body {

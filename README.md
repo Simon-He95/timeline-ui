@@ -5,7 +5,7 @@
 <h1 align="center">Timeline UI</h1>
 
 <p align="center">
-  <code>@simon_he/timeline-ui</code><br />
+  <a href="https://www.npmjs.com/package/@simon_he/timeline-ui"><code>@simon_he/timeline-ui</code></a><br />
   Fixed-layout, themeable timeline primitives for AI agent transcripts.<br />
   Vue 3, plain CSS, no runtime dependency other than Vue.<br />
   <a href="https://github.com/Simon-He95/timeline-ui">GitHub</a>
@@ -576,28 +576,33 @@ the workbench exercises the same API consumers get.
 
 ## Releasing
 
-Releases are published by `.github/workflows/release.yml` when a version tag is
-pushed. The workflow installs with a frozen lockfile, runs typecheck, tests and
-the library build, then publishes with npm provenance.
+`@simon_he/timeline-ui@0.1.0` is published on
+[npm](https://www.npmjs.com/package/@simon_he/timeline-ui). The repository is
+`https://github.com/Simon-He95/timeline-ui`.
 
-The public repository is `https://github.com/Simon-He95/timeline-ui`. Before the
-first release:
+For a new version, update `package.json` and `CHANGELOG.md`, then choose one
+publish path.
 
-- create the repository if needed and confirm the npm scope `@simon_he`;
-- add an `NPM_TOKEN` secret with publish access to that scope;
-- keep the tag and `package.json` version in sync, for example `v0.1.0`.
-
-Local checks before tagging:
+Local publish:
 
 ```bash
+pnpm typecheck
 pnpm test
 pnpm build
-pnpm pack --dry-run   # inspect the tarball
+npm publish --access public --registry=https://registry.npmjs.org/
 ```
 
-`prepublishOnly` also runs tests and the library build. The package is ESM-only;
-it publishes `dist/`, `README.md`, `LICENSE`, `CHANGELOG.md`, the logo and the
-two screenshots used by this README.
+Tag publish through `.github/workflows/release.yml`:
+
+- add an `NPM_TOKEN` secret with access to `@simon_he`;
+- push a tag that matches the new version, for example `v0.1.1`.
+
+Do not publish the same version locally and through the workflow. The current
+`v0.1.0` was published locally, so a duplicate `v0.1.0` tag is not needed.
+
+`prepublishOnly` runs tests and the library build before a local publish. The
+package is ESM-only and publishes `dist/`, `README.md`, `LICENSE`,
+`CHANGELOG.md`, the logo and the two screenshots used by this README.
 
 The package exports:
 
