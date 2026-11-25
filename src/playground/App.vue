@@ -31,6 +31,15 @@
         </button>
       </nav>
 
+      <a
+        class="topbar__github"
+        href="https://github.com/Simon-He95/timeline-ui"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub
+        <span aria-hidden="true">↗</span>
+      </a>
     </header>
 
     <template v-if="view === 'lab'">

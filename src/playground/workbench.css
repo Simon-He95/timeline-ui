@@ -153,6 +153,27 @@ button {
   color: #f4f6f8;
 }
 
+.topbar__github {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 3px;
+  color: #8b98a5;
+  font-family: var(--wb-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.topbar__github:hover {
+  color: #f4f6f8;
+}
+
+.topbar__github span {
+  font-size: 10px;
+}
+
 /* ---------- sidebar ---------- */
 
 .sidebar {
