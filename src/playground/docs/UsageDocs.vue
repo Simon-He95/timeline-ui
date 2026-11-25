@@ -4,6 +4,7 @@
       <aside class="docs__toc">
         <span class="docs__toc-label">On this page</span>
         <nav>
+          <a href="#concepts">Concepts</a>
           <a href="#install">Install</a>
           <a href="#quick-start">Quick start</a>
           <a href="#api">Props &amp; events</a>
@@ -54,6 +55,86 @@
             </p>
           </div>
         </header>
+
+        <section id="concepts" class="docs__section">
+          <h2>Concepts</h2>
+          <p>
+            Timeline UI is a fixed structural primitive. The host decides what the transcript
+            means; the component owns the skeleton and the disclosure mechanics.
+          </p>
+
+          <div class="docs__principles">
+            <article>
+              <strong>Fixed skeleton</strong>
+              <p>The group header, row grid, rail and chevrons stay in place. Tokens change the skin, not the structure.</p>
+            </article>
+            <article>
+              <strong>No product coupling</strong>
+              <p>No i18n, stores, data fetching, markdown or icon set. Vue is the only peer dependency.</p>
+            </article>
+            <article>
+              <strong>Data in, events out</strong>
+              <p>The host builds the view model, owns detail loading and controls expansion when needed.</p>
+            </article>
+            <article>
+              <strong>One public component</strong>
+              <p>Rows, details and chevrons are internal. Deep imports are blocked by the package exports map.</p>
+            </article>
+          </div>
+
+          <div class="docs__split">
+            <div>
+              <h3>Library owns</h3>
+              <ul class="docs__list">
+                <li>Group and row skeleton</li>
+                <li>Rail, disclosure and chevron motion</li>
+                <li>Loading, ready and error detail shells</li>
+                <li>Focus, inert and reduced-motion behavior</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Host owns</h3>
+              <ul class="docs__list">
+                <li>All copy and translations</li>
+                <li>Icons and detail panel components</li>
+                <li>Data fetching and retry transitions</li>
+                <li>Message layout, scrolling and virtualization</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Layout contract</h3>
+          <ul class="docs__list">
+            <li>The group header reads icon, summary, chevron. The chevron follows the summary instead of being pushed to the edge.</li>
+            <li>Rows read icon, label, optional primary parameter and an expandable trailing chevron.</li>
+            <li>The rail starts below the group header, aligns with the group icon center by default and is clipped by the reveal.</li>
+            <li>Details share the row edge. The shell is transparent; the host panel owns its surface.</li>
+            <li>The summary slot can change the summary content. The group and row skeleton cannot be replaced.</li>
+          </ul>
+
+          <h3>Assistant turn integration</h3>
+          <p>
+            The group is a block inside the host's assistant turn, not a message by itself. Compose
+            one assistant header, the group, then the final assistant text. When the answer starts,
+            the host may collapse the group and leave only its summary. The library does not infer
+            this from message text.
+          </p>
+
+          <h3>Accessibility and support</h3>
+          <ul class="docs__list">
+            <li>Group and row headers are native buttons with <code>aria-expanded</code>.</li>
+            <li>Collapsed bodies and detail shells are <code>inert</code> and <code>aria-hidden</code>.</li>
+            <li>The error state uses <code>role="alert"</code>; the retry control is a normal button.</li>
+            <li>Focus rings use the accent token. Reduced motion disables reveal, skeleton and shimmer animations.</li>
+            <li>The components use no browser APIs during setup and can render on the server. Import the stylesheet in the host entry.</li>
+            <li>CSS baseline: Chrome/Edge 111+, Safari 16.4+, Firefox 113+. No CSS polyfills are included.</li>
+          </ul>
+
+          <div class="docs__callout">
+            The detail lifecycle, controlled expansion and a full type reference are in
+            <a href="#examples">Examples</a> and <a href="#types">Types</a>.
+          </div>
+        </section>
 
         <section id="install" class="docs__section">
           <h2>Install</h2>
@@ -211,6 +292,40 @@
             <span>--timeline-ui-font</span>
             <span>all tokens</span>
           </div>
+
+          <details class="docs__token-details">
+            <summary>All tokens and defaults</summary>
+            <div class="docs__table-wrap">
+              <table class="docs__table">
+                <thead>
+                  <tr><th>Group</th><th>Token</th><th>Default</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in tokenRows" :key="row.key">
+                    <td>{{ row.group }}</td>
+                    <td><code>{{ row.key }}</code></td>
+                    <td><code>{{ row.value }}</code></td>
+                    <td>{{ row.label }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="docs__token-note">The dark tone overrides these color tokens:</p>
+            <div class="docs__table-wrap">
+              <table class="docs__table">
+                <thead>
+                  <tr><th>Token</th><th>Dark value</th></tr>
+                </thead>
+                <tbody>
+                  <tr v-for="row in darkTokenRows" :key="row.key">
+                    <td><code>{{ row.key }}</code></td>
+                    <td><code>{{ row.value }}</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
           <div class="docs__callout">
             The lab's <strong>Tokens</strong> tab edits every public token live, including the
             default <code>--timeline-ui-indent</code> of <code>12px</code>.
@@ -220,7 +335,7 @@
         <footer class="docs__footer">
           <div>
             <strong>Timeline UI</strong>
-            <p>The full reference lives in the package README. The lab has live states, detail shells and every token.</p>
+            <p>This Docs view is the live reference. The Lab has live states, detail shells and every token.</p>
           </div>
         </footer>
       </main>
@@ -235,6 +350,7 @@ import { ICONS } from '../icons'
 import DocsCodeBlock from './DocsCodeBlock.vue'
 import DocsTypeExplorer from './DocsTypeExplorer.vue'
 import { TYPES_OVERVIEW } from './type-docs'
+import { DEFAULT_TOKENS, PRESETS, TOKEN_SPECS } from '../token-spec'
 
 const emit = defineEmits<{
   (event: 'open-lab'): void
@@ -262,6 +378,30 @@ const exampleGroup: TimelineGroupVM = {
     },
   ],
 }
+
+type DocTokenRow = { group: string; key: string; label: string; value: string }
+
+const tokenRows: DocTokenRow[] = [
+  { group: 'Font', key: '--timeline-ui-font', label: 'Text font', value: 'system UI stack' },
+  { group: 'Font', key: '--timeline-ui-font-mono', label: 'Primary/meta font', value: 'system mono stack' },
+  { group: 'Font', key: '--timeline-ui-line-height', label: 'Line box', value: '20px' },
+  ...TOKEN_SPECS.map((spec) => ({
+    group: spec.group,
+    key: spec.key,
+    label: spec.label,
+    value: DEFAULT_TOKENS[spec.key] ?? '',
+  })),
+  {
+    group: 'Motion',
+    key: '--timeline-ui-motion-ease',
+    label: 'Reveal easing',
+    value: 'cubic-bezier(0.2, 0.7, 0.2, 1)',
+  },
+]
+
+const darkTokenRows = Object.entries(PRESETS.Dark)
+  .filter((entry): entry is [string, string] => typeof entry[1] === 'string')
+  .map(([key, value]) => ({ key, value }))
 
 const installCode = `pnpm add @simon_he/timeline-ui vue
 
@@ -604,6 +744,93 @@ const themeCode = `<TimelineGroup
   text-underline-offset: 2px;
 }
 
+.docs__principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.docs__principles article {
+  padding: 13px 14px;
+  border: 1px solid var(--wb-line);
+  border-radius: 9px;
+  background: #fff;
+}
+
+.docs__principles strong {
+  color: var(--wb-ink);
+  font-size: 12px;
+}
+
+.docs__principles p {
+  margin: 5px 0 0;
+  color: var(--wb-muted);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.docs__split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 26px;
+}
+
+.docs__split h3 {
+  margin-top: 0;
+}
+
+.docs__list {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  color: var(--wb-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.docs__list li + li {
+  margin-top: 4px;
+}
+
+.docs__token-details {
+  margin-top: 14px;
+  border: 1px solid var(--wb-line);
+  border-radius: 9px;
+  background: #fff;
+}
+
+.docs__token-details summary {
+  padding: 9px 12px;
+  color: var(--wb-ink);
+  font-family: var(--wb-mono);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.docs__token-details[open] summary {
+  border-bottom: 1px solid var(--wb-line);
+}
+
+.docs__token-details .docs__table-wrap {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.docs__token-details .docs__table td:first-child {
+  color: var(--wb-faint);
+  font-family: var(--wb-mono);
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.docs__token-note {
+  margin: 14px 12px 2px;
+  color: var(--wb-faint);
+  font-size: 10.5px;
+}
+
 .docs__table-wrap {
   overflow-x: auto;
   margin-top: 12px;
@@ -793,6 +1020,11 @@ const themeCode = `<TimelineGroup
 @media (max-width: 600px) {
   .docs__layout {
     padding: 20px 16px 56px;
+  }
+
+  .docs__principles,
+  .docs__split {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .docs__hero h1 {

@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible problem with Timeline UI.
+title: "bug: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. For security issues use the private security advisory link instead.
+  - type: input
+    id: version
+    attributes:
+      label: Timeline UI version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Vue version, bundler, browser and operating system.
+      placeholder: Vue 3.5, Vite 6, Chrome 140, macOS
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: A minimal Vue component, repository or steps that reproduce the issue.
+      render: vue
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, console errors or host integration details.

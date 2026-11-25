@@ -17,7 +17,7 @@
           type="button"
           :class="{ 'is-active': view === 'lab' }"
           :aria-current="view === 'lab' ? 'page' : undefined"
-          @click="view = 'lab'"
+          @click="setView('lab')"
         >
           Lab
         </button>
@@ -25,7 +25,7 @@
           type="button"
           :class="{ 'is-active': view === 'docs' }"
           :aria-current="view === 'docs' ? 'page' : undefined"
-          @click="view = 'docs'"
+          @click="setView('docs')"
         >
           Docs
         </button>
@@ -511,13 +511,13 @@
     </section>
     </template>
 
-    <UsageDocs v-else @open-lab="view = 'lab'" />
+    <UsageDocs v-else @open-lab="setView('lab')" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, markRaw, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
-import logoMark from '../../docs/logo-mark.svg?url'
+import logoMark from '../../assets/logo-mark.svg?url'
 import type {
   TimelineDetailStatus,
   TimelineDetailVM,
@@ -624,7 +624,9 @@ const {
   togglePlay,
 } = useMockChat()
 
-const view = ref<'lab' | 'docs'>('lab')
+const initialView: 'lab' | 'docs' =
+  new URLSearchParams(window.location.search).get('view') === 'docs' ? 'docs' : 'lab'
+const view = ref<'lab' | 'docs'>(initialView)
 const activeTab = ref<Tab>('group')
 const narrowQuery = window.matchMedia('(max-width: 1100px)')
 const isNarrow = ref(narrowQuery.matches)
@@ -640,7 +642,25 @@ function syncNarrow(): void {
 onMounted(() => {
   narrowQuery.addEventListener('change', syncNarrow)
   window.addEventListener('keydown', onWindowKeydown)
+  document.title = initialView === 'docs' ? 'Timeline UI Docs' : 'Timeline UI Lab'
+  if (initialView === 'docs' && window.location.hash) {
+    nextTick(() => {
+      document.getElementById(window.location.hash.slice(1))?.scrollIntoView()
+    })
+  }
 })
+
+function setView(next: 'lab' | 'docs'): void {
+  view.value = next
+  const url = new URL(window.location.href)
+  if (next === 'docs') url.searchParams.set('view', 'docs')
+  else {
+    url.searchParams.delete('view')
+    url.hash = ''
+  }
+  window.history.replaceState(null, '', url)
+  document.title = next === 'docs' ? 'Timeline UI Docs' : 'Timeline UI Lab'
+}
 
 function selectTab(tab: Tab): void {
   activeTab.value = tab

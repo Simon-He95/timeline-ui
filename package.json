@@ -17,9 +17,8 @@
   },
   "files": [
     "dist",
-    "docs/logo-mark.svg",
-    "docs/preview.png",
-    "docs/docs-preview.png",
+    "assets/logo-mark.svg",
+    "assets/preview.png",
     "CHANGELOG.md"
   ],
   "main": "./dist/timeline-ui.js",

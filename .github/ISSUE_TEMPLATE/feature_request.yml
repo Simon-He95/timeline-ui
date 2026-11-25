@@ -1,0 +1,39 @@
+name: Feature request
+description: Propose an API, layout or theming change.
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Timeline UI keeps the group and row skeleton fixed. Explain why the change cannot be handled by the host.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What host workflow is blocked or awkward today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the smallest API change that would solve it.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Host-side workarounds, existing props or tokens.
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Public API
+        - Visual design or tokens
+        - Documentation
+        - Developer experience
+    validations:
+      required: true
