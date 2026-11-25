@@ -1,0 +1,61 @@
+@layer timeline-ui {
+  /*
+   * Every public knob lives here. Layout is fixed in timeline.css; these
+   * variables are the only supported way to reskin the primitives.
+   */
+  .timeline-ui {
+    --timeline-ui-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --timeline-ui-font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+    --timeline-ui-font-size: 14px;
+    --timeline-ui-line-height: 20px;
+
+    --timeline-ui-row-padding-x: 8px;
+    --timeline-ui-row-padding-y: 5px;
+    --timeline-ui-row-gap: 7px;
+    --timeline-ui-chevron-size: 14px;
+    --timeline-ui-icon-size: 16px;
+    --timeline-ui-radius: 8px;
+
+    --timeline-ui-group-padding-x: 0px;
+    --timeline-ui-group-padding-y: 4px;
+    --timeline-ui-group-gap: 6px;
+    --timeline-ui-indent: 12px;
+    --timeline-ui-rail-width: 1px;
+    --timeline-ui-rail-offset: 8px;
+
+    --timeline-ui-details-indent: 0px;
+    --timeline-ui-details-margin-right: 8px;
+    --timeline-ui-details-min-height: 64px;
+    --timeline-ui-details-max-height: 240px;
+
+    --timeline-ui-text: #1f2328;
+    --timeline-ui-muted: #59636e;
+    --timeline-ui-faint: #818b98;
+    --timeline-ui-accent: #0969da;
+    --timeline-ui-group-bg: #ffffff;
+    --timeline-ui-rail-color: #d8dee4;
+    --timeline-ui-skeleton-base: #e6eaef;
+    --timeline-ui-skeleton-highlight: #f1f3f5;
+    --timeline-ui-error: #cf222e;
+    --timeline-ui-shimmer: #a9b3be;
+    --timeline-ui-hover-tint: 5%;
+
+    --timeline-ui-motion-duration: 260ms;
+    --timeline-ui-motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --timeline-ui-shimmer-duration: 1600ms;
+  }
+
+  .timeline-ui[data-tone="dark"] {
+    --timeline-ui-text: #e6edf3;
+    --timeline-ui-muted: #9198a1;
+    --timeline-ui-faint: #6e7681;
+    --timeline-ui-accent: #4493f8;
+    --timeline-ui-group-bg: #0d1117;
+    --timeline-ui-rail-color: #30363d;
+    --timeline-ui-skeleton-base: #21262d;
+    --timeline-ui-skeleton-highlight: #30363d;
+    --timeline-ui-error: #f85149;
+    --timeline-ui-shimmer: #c9d1d9;
+    --timeline-ui-hover-tint: 8%;
+  }
+}

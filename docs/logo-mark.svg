@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Timeline UI">
+  <defs>
+    <linearGradient id="tile" x1="8" y1="4" x2="56" y2="62" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a2430"/>
+      <stop offset="1" stop-color="#0b1016"/>
+    </linearGradient>
+  </defs>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="15" fill="url(#tile)" stroke="#2a3644" stroke-width="1.5"/>
+  <path d="M22 18h16" stroke="#f3f7fc" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="22" cy="18" r="3.4" fill="#f3f7fc"/>
+  <path d="M22 22.5V49" stroke="#f3f7fc" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M22 32.5h14" stroke="#c7d2df" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M22 42.5h9" stroke="#8795a7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="m41.4 14.6 4.8 3.4-4.8 3.4" stroke="#5aa2ff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
