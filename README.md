@@ -9,6 +9,8 @@
   Fixed-layout, themeable timeline primitives for AI agent transcripts.<br />
   Vue 3, plain CSS, no runtime dependency other than Vue.<br />
   <a href="https://github.com/Simon-He95/timeline-ui">GitHub</a>
+  /
+  <a href="https://timeline-ui.pages.dev/">Live lab and docs</a>
 </p>
 
 The library owns the skeleton: the group header, row grid, chevrons,
