@@ -2,42 +2,80 @@
 
 `@simon_he/timeline-ui@0.1.0` is published on
 [npm](https://www.npmjs.com/package/@simon_he/timeline-ui). Version `0.1.1` is
-staged for approval with the updated metadata and README.
+currently staged and waiting for npm automated review.
 
-## Before a release
+## One-command release
 
-1. Update `package.json` version.
-2. Update `CHANGELOG.md`.
-3. Update the Docs version label if needed.
-4. Run the checks:
+After the current version is live, use:
 
 ```bash
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm build:demo
+pnpm release patch
 ```
 
-5. Inspect the package:
+Or add release notes:
 
 ```bash
-npm pack --dry-run
+pnpm release patch "Fix keyboard focus in collapsed details"
 ```
 
-## Publish paths
+`patch`, `minor`, `major` and an explicit version such as `0.2.0` are accepted
+as the first argument.
 
-Choose one path. Do not publish the same version twice.
+The command:
 
-### Local direct publish
+1. requires a clean `main` working tree;
+2. verifies npm auth for `https://registry.npmjs.org/`;
+3. bumps `package.json`, the Docs version label, JSON-LD `softwareVersion` and
+   sitemap `lastmod`;
+4. prepends the `CHANGELOG.md` entry;
+5. runs typecheck, tests, library build and demo build;
+6. commits the version change and creates the `vX.Y.Z` tag;
+7. publishes to npm, which may prompt for a one-time password;
+8. pushes `main` and the tag;
+9. creates the GitHub release.
+
+The GitHub release workflow is idempotent. When the version already exists on
+npm, the tag workflow skips the publish step.
+
+## Requirements
+
+- clean `main` branch
+- `npm login --registry=https://registry.npmjs.org/` as `simon_he`
+- `gh auth login` for the GitHub release
+- 2FA access for the npm one-time password
+
+Run from the repository root:
 
 ```bash
-npm publish --access public --registry=https://registry.npmjs.org/
+pnpm release patch
 ```
 
-`prepublishOnly` runs tests and the library build first. This path publishes
-without npm provenance.
+If publishing fails after the local commit and tag are created, fix the npm
+issue and finish with:
 
-### Staged publish
+```bash
+npm publish --access public --registry=https://registry.npmjs.org/ --ignore-scripts
+git push origin main
+git push origin vX.Y.Z
+```
+
+Replace `vX.Y.Z` with the version created by the script.
+
+## Finish the current staged release
+
+Version `0.1.1` is staged. Wait for the automated review, then approve it:
+
+```bash
+npm stage approve 4f650e21-f578-4eb2-8308-aa13e86e60c5 \
+  --registry=https://registry.npmjs.org/
+```
+
+Approval requires 2FA. Once `0.1.1` is live, `pnpm release patch` will produce
+`0.1.2`.
+
+## Manual staged publishing
+
+Use staging only when a release must be reviewed separately:
 
 ```bash
 npm stage publish --registry=https://registry.npmjs.org/
@@ -45,23 +83,12 @@ npm stage list --registry=https://registry.npmjs.org/
 npm stage approve <stage-id> --registry=https://registry.npmjs.org/
 ```
 
-A new package gets a public `0.0.0-stage` placeholder until a maintainer
-approves the staged version with 2FA.
+## GitHub tag workflow
 
-### GitHub tag workflow
-
-The workflow in `.github/workflows/release.yml` publishes a version tag. It
+The workflow in `.github/workflows/release.yml` can publish a version tag. It
 checks the registry first and skips the publish step when the version already
 exists.
 
 - Add an `NPM_TOKEN` secret with access to `@simon_he`.
-- Keep the tag and `package.json` version in sync, for example `v0.2.0`.
+- Keep the tag and `package.json` version in sync.
 - Push the tag.
-
-## After publishing
-
-- Verify `npm view @simon_he/timeline-ui version`.
-- Install the published version in a clean project and import both the
-  component and `@simon_he/timeline-ui/style.css`.
-- Create the matching GitHub release and include the docs and npm links.
-- Rebuild the Lab and Docs if their source changed.
