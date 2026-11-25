@@ -1,12 +1,12 @@
 # Releasing
 
-`@simon_he/timeline-ui@0.1.0` is published on
-[npm](https://www.npmjs.com/package/@simon_he/timeline-ui). Version `0.1.1` is
-currently staged and waiting for npm automated review.
+`@simon_he/timeline-ui` is published on
+[npm](https://www.npmjs.com/package/@simon_he/timeline-ui). Every release gets a
+matching GitHub release.
 
 ## One-command release
 
-After the current version is live, use:
+Use:
 
 ```bash
 pnpm release patch
@@ -61,17 +61,16 @@ git push origin vX.Y.Z
 
 Replace `vX.Y.Z` with the version created by the script.
 
-## Finish the current staged release
+## Finish a staged release
 
-Version `0.1.1` is staged. Wait for the automated review, then approve it:
+If a version was published with `npm stage publish`, wait for the automated
+review and approve it:
 
 ```bash
-npm stage approve 4f650e21-f578-4eb2-8308-aa13e86e60c5 \
-  --registry=https://registry.npmjs.org/
+npm stage approve <stage-id> --registry=https://registry.npmjs.org/
 ```
 
-Approval requires 2FA. Once `0.1.1` is live, `pnpm release patch` will produce
-`0.1.2`.
+Approval requires 2FA.
 
 ## Manual staged publishing
 
