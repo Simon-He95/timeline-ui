@@ -1,0 +1,25 @@
+# Timeline UI
+
+> Fixed-layout, themeable Vue 3 timeline component for AI agent transcripts. The host owns copy, icons and detail panels; the component owns the group header, row rail, disclosure mechanics and loading, ready and error detail shells.
+
+- Package: https://www.npmjs.com/package/@simon_he/timeline-ui
+- Source: https://github.com/Simon-He95/timeline-ui
+- Lab: https://timeline-ui.pages.dev/
+- Docs: https://timeline-ui.pages.dev/?view=docs
+
+## Core API
+
+- TimelineGroup is the only public component.
+- Props: group, expanded, expandedItemIds, lazyDetails, keepDetailsMounted.
+- Events: update:expanded, update:expandedItemIds, detail-toggle, detail-retry, activate.
+- Slot: summary with { group: TimelineGroupVM }.
+- Theming: CSS variables on .timeline-ui, with data-tone="dark" as a preset.
+
+## Docs sections
+
+- Concepts: https://timeline-ui.pages.dev/?view=docs#concepts
+- Props and events: https://timeline-ui.pages.dev/?view=docs#api
+- Types: https://timeline-ui.pages.dev/?view=docs#types
+- Slots: https://timeline-ui.pages.dev/?view=docs#slots
+- Examples: https://timeline-ui.pages.dev/?view=docs#examples
+- Theming: https://timeline-ui.pages.dev/?view=docs#theming

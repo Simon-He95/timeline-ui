@@ -1,6 +1,6 @@
 # Releasing
 
-`@simon_he/timeline-ui@0.1.0` is published on
+`@simon_he/timeline-ui@0.1.1` is published on
 [npm](https://www.npmjs.com/package/@simon_he/timeline-ui). The current release
 was built from the `main` branch and published to `https://registry.npmjs.org/`.
 

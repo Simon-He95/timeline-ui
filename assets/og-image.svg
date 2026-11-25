@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f141a"/>
+      <stop offset="1" stop-color="#18222d"/>
+    </linearGradient>
+    <linearGradient id="tile" x1="8" y1="4" x2="56" y2="62" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a2430"/>
+      <stop offset="1" stop-color="#0b1016"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1030" cy="70" r="280" fill="#2f81f7" opacity="0.08"/>
+  <circle cx="1130" cy="540" r="220" fill="#5aa2ff" opacity="0.05"/>
+  <g transform="translate(84 70)">
+    <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="15" fill="url(#tile)" stroke="#2a3644" stroke-width="1.5"/>
+    <path d="M22 18h16" stroke="#f3f7fc" stroke-width="2.8" stroke-linecap="round"/>
+    <circle cx="22" cy="18" r="3.4" fill="#f3f7fc"/>
+    <path d="M22 22.5V49" stroke="#f3f7fc" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M22 32.5h14" stroke="#c7d2df" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M22 42.5h9" stroke="#8795a7" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="m41.4 14.6 4.8 3.4-4.8 3.4" stroke="#5aa2ff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="174" y="108" fill="#f4f7fb" font-family="Helvetica Neue, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-1.5">Timeline UI</text>
+  <text x="84" y="214" fill="#f4f7fb" font-family="Helvetica Neue, Arial, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.8">Fixed-layout timeline</text>
+  <text x="84" y="270" fill="#f4f7fb" font-family="Helvetica Neue, Arial, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.8">for AI agent transcripts.</text>
+  <text x="84" y="326" fill="#9aa8b7" font-family="Helvetica Neue, Arial, sans-serif" font-size="23">Vue 3, CSS variables, host-owned content, one peer dependency</text>
+  <g transform="translate(84 390)">
+    <rect width="470" height="160" rx="16" fill="#ffffff" opacity="0.98"/>
+    <circle cx="38" cy="42" r="13" fill="#dbeafe"/>
+    <path d="M38 35v14M31 42h14" stroke="#2f81f7" stroke-width="2" stroke-linecap="round"/>
+    <text x="66" y="47" fill="#1f2937" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600">1 thinking, 3 tools</text>
+    <path d="M38 63v54" stroke="#d6dee8" stroke-width="2"/>
+    <circle cx="38" cy="86" r="5" fill="#2f81f7"/>
+    <text x="66" y="91" fill="#4b5563" font-family="Helvetica Neue, Arial, sans-serif" font-size="17">Read file <tspan fill="#2f81f7">src/App.vue</tspan></text>
+    <circle cx="38" cy="116" r="5" fill="#8fb4dd"/>
+    <text x="66" y="121" fill="#4b5563" font-family="Helvetica Neue, Arial, sans-serif" font-size="17">Run tests <tspan fill="#6b7280">pnpm test</tspan></text>
+  </g>
+  <g transform="translate(590 390)">
+    <rect width="526" height="160" rx="16" fill="#0b1016" stroke="#26323e"/>
+    <text x="28" y="42" fill="#7cc7ff" font-family="SFMono-Regular, Menlo, monospace" font-size="15">interface TimelineItemVM {</text>
+    <text x="28" y="70" fill="#d9e2ec" font-family="SFMono-Regular, Menlo, monospace" font-size="14">  id: <tspan fill="#8bb7d6">string</tspan></text>
+    <text x="28" y="94" fill="#d9e2ec" font-family="SFMono-Regular, Menlo, monospace" font-size="14">  status: <tspan fill="#7cc7ff">TimelineStatus</tspan></text>
+    <text x="28" y="118" fill="#d9e2ec" font-family="SFMono-Regular, Menlo, monospace" font-size="14">  detail?: <tspan fill="#7cc7ff">TimelineDetailVM</tspan></text>
+    <text x="28" y="142" fill="#d9e2ec" font-family="SFMono-Regular, Menlo, monospace" font-size="14">}</text>
+  </g>
+  <text x="84" y="590" fill="#6f7f90" font-family="Helvetica Neue, Arial, sans-serif" font-size="17">timeline-ui.pages.dev</text>
+</svg>

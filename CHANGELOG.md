@@ -5,6 +5,25 @@ All notable changes to `@simon_he/timeline-ui` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-11-25
+
+Documentation and discoverability update. No runtime API changes.
+
+### Added
+
+- Direct Lab and Docs URLs with view-aware page metadata.
+- Open Graph and Twitter cards, JSON-LD software metadata, robots and sitemap.
+- Full token reference and concepts in the Docs site.
+- Repository contributing, release, security and third-party documentation.
+- GitHub issue templates and a GitHub release for the published version.
+
+### Changed
+
+- README reduced from a full manual to a concise landing page.
+- Public package metadata now points to the live Lab and includes SEO keywords.
+- Documentation images moved from `docs/` to `assets/`.
+- Release workflow is idempotent and skips an already-published version.
+
 ## [0.1.0] - 2026-11-25
 
 Initial public release.
@@ -34,4 +53,5 @@ Initial public release.
   accent focus-visible rings and `prefers-reduced-motion` support.
 - Stylesheet export at `@simon_he/timeline-ui/style.css`.
 
+[0.1.1]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.1
 [0.1.0]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.0

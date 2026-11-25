@@ -627,6 +627,33 @@ const {
 const initialView: 'lab' | 'docs' =
   new URLSearchParams(window.location.search).get('view') === 'docs' ? 'docs' : 'lab'
 const view = ref<'lab' | 'docs'>(initialView)
+
+const VIEW_META = {
+  lab: {
+    title: 'Timeline UI Lab | Vue 3 timeline for AI agent transcripts',
+    description:
+      'Live lab for the Timeline UI Vue 3 component. Inspect group, row, detail and CSS token states for AI agent transcripts.',
+    url: 'https://timeline-ui.pages.dev/',
+  },
+  docs: {
+    title: 'Timeline UI Docs | TimelineGroup API and theming',
+    description:
+      'TimelineGroup documentation: concepts, props and events, TypeScript types, slots, examples and CSS variable theming for AI agent timelines.',
+    url: 'https://timeline-ui.pages.dev/?view=docs',
+  },
+} as const
+
+function syncViewMeta(next: 'lab' | 'docs'): void {
+  const meta = VIEW_META[next]
+  document.title = meta.title
+  document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
+  document.querySelector('link[rel="canonical"]')?.setAttribute('href', meta.url)
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', meta.title)
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', meta.description)
+  document.querySelector('meta[property="og:url"]')?.setAttribute('content', meta.url)
+  document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', meta.title)
+  document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', meta.description)
+}
 const activeTab = ref<Tab>('group')
 const narrowQuery = window.matchMedia('(max-width: 1100px)')
 const isNarrow = ref(narrowQuery.matches)
@@ -642,7 +669,7 @@ function syncNarrow(): void {
 onMounted(() => {
   narrowQuery.addEventListener('change', syncNarrow)
   window.addEventListener('keydown', onWindowKeydown)
-  document.title = initialView === 'docs' ? 'Timeline UI Docs' : 'Timeline UI Lab'
+  syncViewMeta(initialView)
   if (initialView === 'docs' && window.location.hash) {
     nextTick(() => {
       document.getElementById(window.location.hash.slice(1))?.scrollIntoView()
@@ -659,7 +686,7 @@ function setView(next: 'lab' | 'docs'): void {
     url.hash = ''
   }
   window.history.replaceState(null, '', url)
-  document.title = next === 'docs' ? 'Timeline UI Docs' : 'Timeline UI Lab'
+  syncViewMeta(next)
 }
 
 function selectTab(tab: Tab): void {

@@ -1,14 +1,14 @@
 {
   "name": "@simon_he/timeline-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "type": "module",
-  "description": "Fixed-layout, themeable timeline primitives for AI agent transcripts.",
+  "description": "Fixed-layout Vue 3 timeline component for AI agent transcripts. Host-owned content, CSS variable theming, TypeScript.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Simon-He95/timeline-ui.git"
   },
-  "homepage": "https://github.com/Simon-He95/timeline-ui#readme",
+  "homepage": "https://timeline-ui.pages.dev/",
   "bugs": {
     "url": "https://github.com/Simon-He95/timeline-ui/issues"
   },
@@ -62,15 +62,26 @@
   "keywords": [
     "vue",
     "vue3",
+    "vue-component",
     "timeline",
+    "timeline-component",
+    "fixed-layout",
     "agent",
     "ai",
+    "ai-agent",
+    "agent-ui",
     "chat",
     "transcript",
-    "component"
+    "component",
+    "typescript",
+    "css-variables",
+    "ui"
   ],
   "license": "MIT",
-  "author": "Simon He",
+  "author": {
+    "name": "Simon He",
+    "url": "https://github.com/Simon-He95"
+  },
   "style": "./dist/timeline-ui.css",
   "sideEffects": [
     "**/*.css"

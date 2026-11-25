@@ -6,8 +6,8 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@simon_he/timeline-ui"><code>@simon_he/timeline-ui</code></a><br />
-  Fixed-layout, themeable timeline primitives for AI agent transcripts.<br />
-  Vue 3, plain CSS, Vue as the only peer dependency.<br />
+  Fixed-layout, themeable Vue 3 timeline component for AI agent transcripts.<br />
+  TypeScript, plain CSS, Vue as the only peer dependency.<br />
   <a href="https://github.com/Simon-He95/timeline-ui">GitHub</a>
   /
   <a href="https://timeline-ui.pages.dev/">Lab</a>
