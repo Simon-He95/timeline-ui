@@ -576,21 +576,14 @@ the workbench exercises the same API consumers get.
 
 ## Releasing
 
-The package is `@simon_he/timeline-ui`. The repository is
+`@simon_he/timeline-ui@0.1.0` is published on
+[npm](https://www.npmjs.com/package/@simon_he/timeline-ui). The repository is
 `https://github.com/Simon-He95/timeline-ui`.
 
-The first release, `0.1.0`, is prepared for npm. Staged publishing creates a
-public `0.0.0-stage` placeholder and keeps the real version non-installable
-until a maintainer approves it with 2FA.
+For a new version, update `package.json` and `CHANGELOG.md`, then choose one
+publish path.
 
-List and approve a staged release:
-
-```bash
-npm stage list --registry=https://registry.npmjs.org/
-npm stage approve <stage-id> --registry=https://registry.npmjs.org/
-```
-
-To publish directly instead:
+Direct local publish:
 
 ```bash
 pnpm typecheck
@@ -599,12 +592,18 @@ pnpm build
 npm publish --access public --registry=https://registry.npmjs.org/
 ```
 
-For future versions, update `package.json` and `CHANGELOG.md` first. Do not
-publish the same version both locally and through the tag-triggered workflow.
+Staged publish:
+
+```bash
+npm stage publish --registry=https://registry.npmjs.org/
+npm stage list --registry=https://registry.npmjs.org/
+npm stage approve <stage-id> --registry=https://registry.npmjs.org/
+```
 
 The `.github/workflows/release.yml` workflow can also publish a version tag
 after the repository has an `NPM_TOKEN` secret with access to `@simon_he`.
 
+Do not publish the same version more than once across these paths.
 `prepublishOnly` runs tests and the library build before a local publish. The
 package is ESM-only and publishes `dist/`, `README.md`, `LICENSE`,
 `CHANGELOG.md`, the logo and the two screenshots used by this README.
