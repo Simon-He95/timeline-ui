@@ -11,7 +11,7 @@ The Lab is a development demo and is not part of the published package.
   Alexander Kiselev. Original designer: eric8810. The full notice is in
   `src/playground/glyph/assets/LICENSE.txt` and at
   [timeline-ui.pages.dev/third-party-notices.html](https://timeline-ui.pages.dev/third-party-notices.html).
-- The generated big fat fish image in the mock image result is an original
+- The generated big fat fish anime girl in the mock image result is an original
   demo asset. It is not part of the published package and has no external
   attribution.
 - `stream-diffs` and `markstream-vue` are development dependencies with their

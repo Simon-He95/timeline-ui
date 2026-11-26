@@ -129,7 +129,7 @@ function createImageItem(): TimelineItemVM {
     kind: 'tool',
     status: 'running',
     label: 'Generate image',
-    primary: 'DSH big fat fish',
+    primary: 'DSH big fat fish girl',
     icon: markRaw(ICONS.image),
     detail: {
       status: 'loading',

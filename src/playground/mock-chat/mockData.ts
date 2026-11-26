@@ -1,4 +1,4 @@
-import dshFatFish from './assets/dsh-fat-fish.png'
+import dshFatFishGirl from './assets/dsh-fat-fish-girl.jpg'
 
 export const THINKING_TEXT = `I’m checking the extracted row against the current desktop timeline.
 
@@ -141,9 +141,9 @@ export const SEARCH_RESULTS = [
 
 
 export const GENERATED_IMAGE = {
-  src: dshFatFish,
-  alt: 'Cute anime-style blue big fat fish mascot',
-  prompt: 'DSH big fat fish, cute anime style, soft daylight, mint and navy palette',
+  src: dshFatFishGirl,
+  alt: 'Cute anime girl in a blue big fat fish hoodie hugging a fish plush',
+  prompt: 'DSH big fat fish anime girl, cute, soft daylight, mint and navy palette',
   meta: '1024 × 1024, generated demo asset',
   credit: 'Generated demo asset',
 }
