@@ -24,8 +24,8 @@ importers:
         specifier: ^26.1.0
         version: 26.1.0
       markstream-vue:
-        specifier: 2.0.32
-        version: 2.0.32(stream-diffs@0.0.5(@shikijs/themes@4.6.0)(vue@3.5.46(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3))
+        specifier: 2.0.33
+        version: 2.0.33(stream-diffs@0.0.5(@shikijs/themes@4.6.0)(vue@3.5.46(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3))
       stream-diffs:
         specifier: 0.0.5
         version: 0.0.5(@shikijs/themes@4.6.0)(vue@3.5.46(typescript@5.9.3))
@@ -1048,11 +1048,11 @@ packages:
     resolution: {integrity: sha512-8QVim/mINOfv8eE6OT97aM7WYyo+G2P/hAr0tujwEGnAYztG6cJQ0X5B6PqtnjsXjRqDxtQWjWdvrn1DPbgGAw==}
     engines: {node: '>=20.19'}
 
-  markstream-core@2.0.32:
-    resolution: {integrity: sha512-4cEb5vwcy3/kZO9PT8XpxFhP+OUAYbtUXXOKh8bJsCDB2RgLZqKx3+NZKwDTuD2H9xDBnceLfQGuNx+NWmTXcw==}
+  markstream-core@2.0.33:
+    resolution: {integrity: sha512-FKA3KRho0LEf6L051NPnZhO8ZWL2Ycohul3IS/JwH1oMqcULvted97tqAMGBSiFpu6Lhj/2DkyLlrGiccDjnTw==}
 
-  markstream-vue@2.0.32:
-    resolution: {integrity: sha512-4vLacyQZPLFVi+hFkHcwt/HZRCjSzDiHoWnb3Ngp1vRl6fzE/gtRxqobPKsO7I3DHBmh60TKuNa6JikhlwoSjA==}
+  markstream-vue@2.0.33:
+    resolution: {integrity: sha512-6UDtr+oEP3RFp/H9amcq816s4H025fAw5nusV3POLl1jI1TXKSinIC/mb44fZpnZRIbDZrjhBafvEYNVm0dhZw==}
     peerDependencies:
       '@antv/infographic': ^0.2.3
       '@terrastruct/d2': '>=0.1.33'
@@ -1267,8 +1267,8 @@ packages:
       vue:
         optional: true
 
-  stream-markdown-parser@1.2.31:
-    resolution: {integrity: sha512-RwyPkPTNYjfbKhQns93L5IyPnxU7ZRZy1ope4iXVKedksTFVwX0P7Xs0Pgjq8Gbz0BlfUHJwX7v+6kV2To3miA==}
+  stream-markdown-parser@1.2.32:
+    resolution: {integrity: sha512-3ihrR1Lt+Qc5s5JvhfTg7XrSSJFdP5f8zygzgnQqIt+kMkzcJVf7KWn2btmSRTI5qCXOtF4lo4dEg78yjfBPWg==}
 
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
@@ -2459,14 +2459,14 @@ snapshots:
       mdurl: 2.1.0
       punycode.js: 2.3.1
 
-  markstream-core@2.0.32: {}
+  markstream-core@2.0.33: {}
 
-  markstream-vue@2.0.32(stream-diffs@0.0.5(@shikijs/themes@4.6.0)(vue@3.5.46(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3)):
+  markstream-vue@2.0.33(stream-diffs@0.0.5(@shikijs/themes@4.6.0)(vue@3.5.46(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3)):
     dependencies:
       '@chenglou/pretext': 1.0.0
       '@floating-ui/dom': 1.8.0
-      markstream-core: 2.0.32
-      stream-markdown-parser: 1.2.31
+      markstream-core: 2.0.33
+      stream-markdown-parser: 1.2.32
       vue: 3.5.46(typescript@5.9.3)
     optionalDependencies:
       stream-diffs: 0.0.5(@shikijs/themes@4.6.0)(vue@3.5.46(typescript@5.9.3))
@@ -2688,7 +2688,7 @@ snapshots:
       - react
       - react-dom
 
-  stream-markdown-parser@1.2.31:
+  stream-markdown-parser@1.2.32:
     dependencies:
       markdown-it-container: 4.0.0
       markdown-it-footnote: 4.0.0

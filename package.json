@@ -50,7 +50,7 @@
     "@vue/test-utils": "^2.6.0",
     "@vue/tsconfig": "^0.7.0",
     "jsdom": "^26.1.0",
-    "markstream-vue": "2.0.32",
+    "markstream-vue": "2.0.33",
     "stream-diffs": "0.0.5",
     "typescript": "^5.9.3",
     "vite": "^6.4.3",
