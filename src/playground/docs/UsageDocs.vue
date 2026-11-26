@@ -181,7 +181,7 @@
                 <tr><td><code>keepDetailsMounted</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Keep a detail shell mounted after its first open.</td></tr>
                 <tr><td><code>unmountCollapsed</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Unmount a large collapsed group rail after the close transition.</td></tr>
                 <tr><td><code>lazyUnmountThreshold</code></td><td><code>number</code></td><td><code>32</code></td><td>Item count at which <code>unmountCollapsed</code> starts applying.</td></tr>
-                <tr><td><code>staggerEnter</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Stagger newly added rail items with a per-index enter delay.</td></tr>
+                <tr><td><code>staggerEnter</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Stagger newly added rail items with a per-index enter delay, capped at index 8.</td></tr>
               </tbody>
             </table>
           </div>

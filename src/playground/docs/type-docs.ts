@@ -302,7 +302,7 @@ export const DOC_TYPE_LIST: DocType[] = [
       {
         name: 'staggerEnter?',
         type: 'boolean',
-        description: 'Stagger newly added rail items with a per-index enter delay.',
+        description: 'Stagger newly added rail items with a per-index enter delay, capped at index 8.',
       },
     ],
     related: ['TimelineGroupVM', 'TimelineGroupEmits'],

@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { defineComponent, h, nextTick, ref } from 'vue'
 import { TimelineGroup, type TimelineGroupVM } from '../src/lib'
+import { timelineGroupStaggerDelayMs } from '../src/lib/group-transition'
 import TimelineDetails from '../src/lib/components/TimelineDetails.vue'
 
 afterEach(() => {
@@ -268,6 +269,14 @@ describe('TimelineGroup', () => {
     expect(rows).toHaveLength(2)
     expect(rows[0]!.attributes('data-enter-index')).toBe('0')
     expect(rows[1]!.attributes('data-enter-index')).toBe('1')
+  })
+
+  it('caps the enter stagger at index 8', () => {
+    expect(timelineGroupStaggerDelayMs(0)).toBe(0)
+    expect(timelineGroupStaggerDelayMs(8)).toBe(320)
+    expect(timelineGroupStaggerDelayMs(9)).toBe(320)
+    expect(timelineGroupStaggerDelayMs(100)).toBe(320)
+    expect(timelineGroupStaggerDelayMs(-1)).toBe(0)
   })
 
   it('keeps a custom row element when the host replaces the item payload', async () => {
