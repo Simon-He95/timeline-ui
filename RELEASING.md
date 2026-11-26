@@ -34,6 +34,10 @@ The command:
 8. pushes `main` and the tag;
 9. creates the GitHub release.
 
+npm may hold the new version for staged publishing approval. In that case the
+command stops after the upload and prints the approval and push commands. Approve
+the staged version on npmjs.com, then verify it is public and finish the push.
+
 The GitHub release workflow is idempotent. When the version already exists on
 npm, the tag workflow skips the publish step.
 

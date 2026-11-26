@@ -80,6 +80,25 @@ function versionExists(version) {
   return result.status === 0
 }
 
+function stagedVersion(version) {
+  try {
+    const stages = JSON.parse(capture('npm', ['stage', 'list', '--json', '--registry', registry]))
+    return stages.find(
+      (stage) => stage.packageName === '@simon_he/timeline-ui' && stage.version === version,
+    )
+  } catch {
+    return undefined
+  }
+}
+
+async function waitForVersion(version) {
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    if (versionExists(version)) return true
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+  }
+  return false
+}
+
 function today() {
   const now = new Date()
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
@@ -182,6 +201,27 @@ try {
   npm publish --access public --registry=${registry} --ignore-scripts
   git push origin main
   git push origin v${nextVersion}
+`)
+  process.exit(1)
+}
+
+if (!(await waitForVersion(nextVersion))) {
+  const stage = stagedVersion(nextVersion)
+  console.error(`\nrelease: npm accepted the upload but ${nextVersion} is not publicly visible.`)
+  console.error('release: the package may be waiting for staged publishing approval.')
+  if (stage) {
+    console.error(`Approve it with:
+  npm stage approve ${stage.id} --registry=${registry}
+`)
+  } else {
+    console.error(`Approve it from https://www.npmjs.com/package/@simon_he/timeline-ui, then verify:
+  npm view @simon_he/timeline-ui@${nextVersion} version --registry=${registry}
+`)
+  }
+  console.error(`After approval, push and create the release:
+  git push origin main
+  git push origin v${nextVersion}
+  gh release create v${nextVersion} --title "Timeline UI v${nextVersion}" --notes "${releaseNotes}"
 `)
   process.exit(1)
 }
