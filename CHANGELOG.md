@@ -5,6 +5,10 @@ All notable changes to `@simon_he/timeline-ui` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-11-26
+
+Keep row chevrons next to content, align detail panels, and polish the Lab demo
+
 ## [0.1.1] - 2026-11-25
 
 Documentation and discoverability update. No runtime API changes.
@@ -53,5 +57,6 @@ Initial public release.
   accent focus-visible rings and `prefers-reduced-motion` support.
 - Stylesheet export at `@simon_he/timeline-ui/style.css`.
 
+[0.1.2]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.2
 [0.1.1]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.1
 [0.1.0]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.0
