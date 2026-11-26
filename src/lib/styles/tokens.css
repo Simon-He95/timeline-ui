@@ -23,7 +23,7 @@
     --timeline-ui-rail-width: 1px;
     --timeline-ui-rail-offset: 8px;
 
-    --timeline-ui-details-indent: 0px;
+    --timeline-ui-details-indent: 16px;
     --timeline-ui-details-margin-right: 8px;
     --timeline-ui-details-min-height: 64px;
     --timeline-ui-details-max-height: 240px;

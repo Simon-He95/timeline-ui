@@ -68,7 +68,7 @@ export const DEFAULT_TOKENS: Record<string, string> = {
   '--timeline-ui-radius': '8px',
   '--timeline-ui-font-size': '14px',
 
-  '--timeline-ui-details-indent': '0px',
+  '--timeline-ui-details-indent': '16px',
   '--timeline-ui-details-margin-right': '8px',
   '--timeline-ui-details-min-height': '64px',
   '--timeline-ui-details-max-height': '240px',
