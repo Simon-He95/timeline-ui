@@ -243,7 +243,7 @@ export function useMockChat() {
         if (index === Math.floor(thinkingChunks.length * 0.35)) {
           thinking.primary = 'checking chevron and icon alignment…'
         } else if (index === Math.floor(thinkingChunks.length * 0.7)) {
-          thinking.primary = 'drafting the trailing-chevron change…'
+          thinking.primary = 'drafting the inline-chevron change…'
         }
       })
       at += CHUNK_INTERVAL_MS
@@ -253,7 +253,7 @@ export function useMockChat() {
     add(at, () => {
       thinking.status = 'complete'
       thinking.label = 'Thought for 2s'
-      thinking.primary = 'settled on a trailing chevron'
+      thinking.primary = 'settled on a content-following chevron'
       const detail = thinking.detail
       if (detail?.props) detail.props.loading = false
       syncSummary()

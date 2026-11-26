@@ -20,7 +20,7 @@
         <component :is="iconComponent" :status="item.status" />
       </span>
       <span class="tl-row__label">{{ item.label }}</span>
-      <span class="tl-row__primary">{{ item.primary ?? '' }}</span>
+      <span v-if="item.primary" class="tl-row__primary">{{ item.primary }}</span>
       <TimelineChevron v-if="hasDetails" />
     </component>
 

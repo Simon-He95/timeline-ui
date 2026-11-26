@@ -66,7 +66,7 @@
           <div class="docs__principles">
             <article>
               <strong>Fixed skeleton</strong>
-              <p>The group header, row grid, rail and chevrons stay in place. Tokens change the skin, not the structure.</p>
+              <p>The group header, row header, rail and chevrons stay in place. Tokens change the skin, not the structure.</p>
             </article>
             <article>
               <strong>No product coupling</strong>
@@ -106,7 +106,7 @@
           <h3>Layout contract</h3>
           <ul class="docs__list">
             <li>The group header reads icon, summary, chevron. The chevron follows the summary instead of being pushed to the edge.</li>
-            <li>Rows read icon, label, optional primary parameter and an expandable trailing chevron.</li>
+            <li>Rows read icon, label, optional primary parameter and an expandable chevron that follows the row content.</li>
             <li>The rail starts below the group header, aligns with the group icon center by default and is clipped by the reveal.</li>
             <li>Details share the row edge. The shell is transparent; the host panel owns its surface.</li>
             <li>The summary slot can change the summary content. The group and row skeleton cannot be replaced.</li>

@@ -4,11 +4,11 @@ export const THINKING_TEXT = `I’m checking the extracted row against the curre
 
 1. The leading chevron consumes a column and breaks icon alignment.
 2. The group already has a leading status glyph; rows should start with the tool icon.
-3. Move the chevron to the trailing edge and pass status into the icon component.`
+3. Move the chevron after the row content and pass status into the icon component.`
 
 export const ASSISTANT_MARKDOWN = `The extraction now streams as a real transcript.
 
-- **Group** keeps the fixed skeleton, leading glyph and trailing chevron.
+- **Group** keeps the fixed skeleton, leading glyph and chevron after the summary.
 - **Read file** renders the file with \`stream-diffs\` instead of a fake diff.
 - **Edit file** renders a real unified diff.
 - **Generate image** paints the image result in a host card.
@@ -127,7 +127,7 @@ export const EDIT_DIFF = {
 
 export const COMMAND_LINES = [
   '✓ 8 tests passed',
-  '  ✓ keeps the expand chevron trailing',
+  '  ✓ keeps the expand chevron after content',
   '  ✓ passes status to group and item icons',
   '  ✓ paints the loading shell before content',
   '✓ built in 1.42s',

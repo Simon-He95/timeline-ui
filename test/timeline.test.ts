@@ -111,7 +111,7 @@ describe('TimelineGroup', () => {
     expect(wrapper.find('.tl-details__shell').exists()).toBe(true)
   })
 
-  it('keeps the expand chevron trailing so icons and chevrons share columns', () => {
+  it('keeps the expand chevron after the header content', () => {
     const wrapper = mount(TimelineGroup, { props: { group: makeGroup() } })
 
     const groupHeader = wrapper.find('.tl-group__header').element

@@ -356,7 +356,7 @@
           <section class="panel panel--muted">
             <h3>How this maps</h3>
             <p class="hint">
-              Every row uses the same grid: icon, label, primary parameter, trailing chevron.
+              Every row uses the same header: icon, label, primary parameter, chevron that follows the content.
               Only the icon component and detail component are swapped by data.
             </p>
             <pre class="snippet"><CodeText :code="ITEM_MAPPING_SNIPPET" language="ts" /></pre>
