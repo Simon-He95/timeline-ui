@@ -54,6 +54,8 @@
               :streaming="assistantLoading"
               :final="!assistantLoading"
               :fade="assistantLoading"
+              :render-code-blocks-as-pre="false"
+              :theme="{ dark: 'github-dark', light: 'github-light' }"
             />
           </div>
         </section>

@@ -2011,6 +2011,14 @@ select:focus-visible {
   object-fit: contain;
 }
 
+.demo-image__error {
+  padding: 12px;
+  color: var(--timeline-ui-faint);
+  font-family: var(--timeline-ui-font-mono);
+  font-size: 10px;
+  text-align: center;
+}
+
 .demo-image__body {
   display: flex;
   min-width: 0;
@@ -2047,38 +2055,7 @@ select:focus-visible {
 }
 
 .demo-code {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.demo-code__head {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 2px 2px 7px;
-  border-bottom: 1px solid color-mix(in srgb, var(--timeline-ui-text) 10%, transparent);
-  background: var(--timeline-ui-group-bg);
-  color: var(--timeline-ui-muted);
-  font-family: var(--timeline-ui-font-mono);
-  font-size: 10.5px;
-}
-
-.demo-code__path {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.demo-code__meta {
-  flex: none;
-  color: var(--timeline-ui-faint);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  display: block;
 }
 
 .demo-code__body {
@@ -2087,19 +2064,22 @@ select:focus-visible {
 }
 
 .demo-code__surface {
+  position: relative;
   min-height: 76px;
-  margin-top: 8px;
-  overflow: hidden;
+  max-height: 220px;
+  overflow: auto;
   border: 1px solid color-mix(in srgb, var(--timeline-ui-text) 8%, transparent);
   border-radius: 6px;
   background: #fff;
-  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .demo-code__fallback {
   margin: 0;
   max-height: 200px;
   overflow: auto;
+  padding: 8px 10px;
+  background: #fff;
   font-family: var(--timeline-ui-font-mono);
   font-size: 10.5px;
   line-height: 1.5;
@@ -2111,7 +2091,7 @@ select:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  padding: 8px 4px;
+  padding: 8px 10px;
   background: var(--timeline-ui-group-bg);
 }
 
@@ -2155,28 +2135,11 @@ select:focus-visible {
 
 .demo-thinking {
   margin-top: 2px;
-  padding: 7px 2px 4px 10px;
+  padding: 0 2px 4px 10px;
   border-left: 2px solid color-mix(in srgb, var(--timeline-ui-text) 9%, transparent);
   color: var(--timeline-ui-muted);
   font-size: 13px;
   line-height: 1.72;
-}
-
-.demo-thinking__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 5px;
-  color: var(--timeline-ui-faint);
-  font-family: var(--timeline-ui-font-mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.demo-thinking__live {
-  color: var(--timeline-ui-accent);
 }
 
 .demo-thinking__paragraph {

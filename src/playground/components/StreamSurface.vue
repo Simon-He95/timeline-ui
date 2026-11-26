@@ -1,23 +1,21 @@
 <template>
   <div class="demo-code">
-    <div class="demo-code__head">
-      <span class="demo-code__path">{{ path }}</span>
-      <span class="demo-code__meta">{{ mode === 'diff' ? 'diff' : language || 'file' }}</span>
-    </div>
     <div class="demo-code__body">
-      <div ref="host" class="demo-code__surface" />
-      <pre v-if="!ready && fallback" class="demo-code__fallback"><code>{{ fallback }}</code></pre>
-      <div v-if="!ready && !fallback" class="demo-code__loading">
-        <span class="demo-code__skeleton" />
-        <span class="demo-code__skeleton" />
-        <span class="demo-code__skeleton" />
+      <div class="demo-code__surface" :title="surfaceTitle">
+        <div ref="host" class="demo-code__host" />
+        <pre v-if="failed && fallback" class="demo-code__fallback"><code>{{ fallback }}</code></pre>
+        <div v-if="!ready && !failed" class="demo-code__loading">
+          <span class="demo-code__skeleton" />
+          <span class="demo-code__skeleton" />
+          <span class="demo-code__skeleton" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { createDiffSurface, type DiffSurfaceController } from 'stream-diffs'
 
 defineOptions({ name: 'DemoStreamSurface' })
@@ -44,18 +42,23 @@ const fallback = computed(() => {
   return [props.oldCode ?? '', '---', props.newCode ?? ''].join('\n')
 })
 
+const surfaceTitle = computed(() =>
+  props.language ? `${props.path} (${props.language})` : props.path,
+)
+
 const THEME = {
   light: 'github-light',
   dark: 'github-dark',
 } as const
 
 async function mountSurface(): Promise<void> {
-  const element = host.value
-  if (!element) return
-
   const current = ++generation
   ready.value = false
   failed.value = false
+
+  await nextTick()
+  const element = host.value
+  if (!element) return
 
   const next =
     props.mode === 'file'

@@ -9,6 +9,8 @@
       :streaming="loading"
       :final="!loading"
       :fade="loading"
+      :render-code-blocks-as-pre="false"
+      :theme="{ dark: 'github-dark', light: 'github-light' }"
     />
   </div>
 </template>

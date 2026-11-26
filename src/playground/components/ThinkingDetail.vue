@@ -1,10 +1,5 @@
 <template>
   <div class="demo-thinking">
-    <div class="demo-thinking__head">
-      <span>Reasoning</span>
-      <span v-if="loading" class="demo-thinking__live">streaming</span>
-    </div>
-
     <template v-for="(block, index) in blocks" :key="index">
       <ol v-if="block.kind === 'steps'" class="demo-thinking__steps">
         <li v-for="(step, stepIndex) in block.items" :key="stepIndex">{{ step }}</li>
