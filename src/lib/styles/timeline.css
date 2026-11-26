@@ -85,7 +85,7 @@
     height: var(--timeline-ui-chevron-size);
     align-items: center;
     justify-content: center;
-    color: var(--timeline-ui-muted);
+    color: var(--timeline-ui-faint);
     transition:
       color var(--timeline-ui-motion-duration) var(--timeline-ui-motion-ease),
       transform var(--timeline-ui-motion-duration) var(--timeline-ui-motion-ease);
