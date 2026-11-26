@@ -5,6 +5,10 @@ All notable changes to `@simon_he/timeline-ui` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2026-11-26
+
+Cap the enter stagger at eight items
+
 ## [0.1.3] - 2026-11-26
 
 Release 0.1.3.
@@ -61,6 +65,7 @@ Initial public release.
   accent focus-visible rings and `prefers-reduced-motion` support.
 - Stylesheet export at `@simon_he/timeline-ui/style.css`.
 
+[0.1.4]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.4
 [0.1.3]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.3
 [0.1.2]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.2
 [0.1.1]: https://www.npmjs.com/package/@simon_he/timeline-ui/v/0.1.1

@@ -17,7 +17,7 @@
           <a href="https://www.npmjs.com/package/@simon_he/timeline-ui" target="_blank" rel="noreferrer">
             @simon_he/timeline-ui
           </a>
-          <span>v0.1.3</span>
+          <span>v0.1.4</span>
         </div>
       </aside>
 
