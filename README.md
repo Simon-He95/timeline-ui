@@ -107,7 +107,7 @@ The shell paints immediately, before the panel is available.
 | `keepDetailsMounted` | `boolean` | `true` | Keep a detail shell mounted after its first open |
 | `unmountCollapsed` | `boolean` | `false` | Unmount a large collapsed group's rail after the close transition |
 | `lazyUnmountThreshold` | `number` | `32` | Item count at which `unmountCollapsed` starts applying |
-| `staggerEnter` | `boolean` | `false` | Stagger newly added rail items with a per-index enter delay |
+| `staggerEnter` | `boolean` | `false` | Stagger newly added rail items with a per-index enter delay, capped at index 8 |
 
 | Event | Payload | Meaning |
 | --- | --- | --- |

@@ -115,7 +115,7 @@ export interface TimelineGroupProps {
   unmountCollapsed?: boolean
   /** Item count at which a collapsed group starts unmounting its rail. */
   lazyUnmountThreshold?: number
-  /** Animate newly added rail items with a per-index stagger. */
+  /** Animate newly added rail items with a per-index stagger (capped at index 8). */
   staggerEnter?: boolean
 }
 

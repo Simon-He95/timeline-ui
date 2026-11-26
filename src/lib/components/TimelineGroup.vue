@@ -80,7 +80,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, TransitionGroup, type Component } from 'vue'
 import type { TimelineGroupEmits, TimelineGroupProps } from '../types'
-import { useTimelineGroupTransition } from '../group-transition'
+import { timelineGroupStaggerDelayMs, useTimelineGroupTransition } from '../group-transition'
 import TimelineChevron from './TimelineChevron.vue'
 import TimelineRow from './TimelineRow.vue'
 
@@ -137,11 +137,9 @@ const revealExpanded = computed(() =>
   props.unmountCollapsed === true ? contentOpen.value : isExpanded.value,
 )
 
-const STAGGER_STEP_MS = 40
-
 function setStaggerDelay(element: Element) {
   const index = Number((element as HTMLElement).dataset.enterIndex ?? 0)
-  ;(element as HTMLElement).style.transitionDelay = `${index * STAGGER_STEP_MS}ms`
+  ;(element as HTMLElement).style.transitionDelay = `${timelineGroupStaggerDelayMs(index)}ms`
 }
 
 const railComponent = computed<Component | string>(() =>

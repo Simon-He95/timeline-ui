@@ -2,6 +2,18 @@ import { computed, onScopeDispose, ref, toValue, watch, type MaybeRefOrGetter } 
 
 export const DEFAULT_TIMELINE_GROUP_ANIMATION_MS = 260
 export const DEFAULT_TIMELINE_GROUP_LAZY_THRESHOLD = 32
+export const DEFAULT_TIMELINE_GROUP_STAGGER_STEP_MS = 40
+export const DEFAULT_TIMELINE_GROUP_STAGGER_MAX_INDEX = 8
+
+/**
+ * Delay for a newly entered rail item. The index is capped so a long group
+ * cannot leave a newly appended row waiting for seconds.
+ */
+export function timelineGroupStaggerDelayMs(index: number): number {
+  const normalizedIndex = Number.isFinite(index) ? Math.max(0, Math.floor(index)) : 0
+  return Math.min(normalizedIndex, DEFAULT_TIMELINE_GROUP_STAGGER_MAX_INDEX)
+    * DEFAULT_TIMELINE_GROUP_STAGGER_STEP_MS
+}
 
 export interface TimelineGroupTransitionOptions {
   expanded: MaybeRefOrGetter<boolean>
