@@ -34,6 +34,7 @@
           class="tl-group__rail"
         >
           <template v-if="$slots.row">
+            <!-- Keyed wrapper: custom row DOM survives item payload updates. -->
             <div
               v-for="(item, index) in group.items"
               :key="item.id"

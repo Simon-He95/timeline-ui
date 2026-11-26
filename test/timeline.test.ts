@@ -233,6 +233,21 @@ describe('TimelineGroup', () => {
     expect(wrapper.find('.tl-row__primary .host-primary').text()).toBe('a.ts')
   })
 
+  it('renders a primary slot even when the item has no primary text', () => {
+    const wrapper = mount(TimelineGroup, {
+      props: {
+        group: makeGroup({
+          items: [{ id: 'tool', kind: 'tool', status: 'complete', label: 'Read file' }],
+        }),
+      },
+      slots: {
+        primary: '<template #primary><mark class="host-primary">from data</mark></template>',
+      },
+    })
+
+    expect(wrapper.find('.tl-row__primary .host-primary').text()).toBe('from data')
+  })
+
   it('renders custom rows inside the staggered rail', () => {
     const wrapper = mount(TimelineGroup, {
       props: {

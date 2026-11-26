@@ -22,7 +22,7 @@
       <span class="tl-row__label">
         <slot name="label" :item="item">{{ item.label }}</slot>
       </span>
-      <span v-if="item.primary" class="tl-row__primary">
+      <span v-if="item.primary || $slots.primary" class="tl-row__primary">
         <slot name="primary" :item="item">{{ item.primary }}</slot>
       </span>
       <TimelineChevron v-if="hasDetails" />
