@@ -109,7 +109,7 @@
             <li>Rows read icon, label, optional primary parameter and an expandable chevron that follows the row content.</li>
             <li>The rail starts below the group header, aligns with the group icon center by default and is clipped by the reveal.</li>
             <li>Details align with the row icon edge. The shell is transparent; the host panel owns its surface.</li>
-            <li>The summary slot can change the summary content. The group and row skeleton cannot be replaced.</li>
+            <li>The summary and group-extra slots change header-adjacent content; the row slot can replace a whole row while the group header, rail and reveal stay fixed.</li>
           </ul>
 
           <h3>Assistant turn integration</h3>
@@ -179,6 +179,9 @@
                 <tr><td><code>expandedItemIds</code></td><td><code>readonly string[] | undefined</code></td><td><code>undefined</code></td><td>Controlled open row ids; omit for internal state.</td></tr>
                 <tr><td><code>lazyDetails</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Do not mount a detail before its first open.</td></tr>
                 <tr><td><code>keepDetailsMounted</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Keep a detail shell mounted after its first open.</td></tr>
+                <tr><td><code>unmountCollapsed</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Unmount a large collapsed group rail after the close transition.</td></tr>
+                <tr><td><code>lazyUnmountThreshold</code></td><td><code>number</code></td><td><code>32</code></td><td>Item count at which <code>unmountCollapsed</code> starts applying.</td></tr>
+                <tr><td><code>staggerEnter</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Stagger newly added rail items with a per-index enter delay.</td></tr>
               </tbody>
             </table>
           </div>
@@ -218,8 +221,9 @@
         <section id="slots" class="docs__section">
           <h2>Slots</h2>
           <p>
-            <strong>Only one slot exists: <code>summary</code>.</strong> Icons, details and all copy
-            are data, not slots. That is deliberate: the group and row skeleton cannot be replaced.
+            The group header, rail and reveal stay fixed. The default row is text/icon based;
+            <code>row</code> replaces the whole row when a host card needs richer content.
+            Icons, details and all copy still arrive as data.
           </p>
           <div class="docs__table-wrap">
             <table class="docs__table">
@@ -228,6 +232,10 @@
               </thead>
               <tbody>
                 <tr><td><code>summary</code></td><td><code>{ group: TimelineGroupVM }</code></td><td>Rich content inside the group header button. The rail, rows and chevron stay fixed. Use phrasing content only.</td></tr>
+                <tr><td><code>group-extra</code></td><td><code>{ group: TimelineGroupVM }</code></td><td>Content below the header and above the rail, such as a collapsed thinking excerpt.</td></tr>
+                <tr><td><code>row</code></td><td><code>{ item, expanded, toggle, index }</code></td><td>Replaces the whole default row, including its header and detail. The host owns the row content and interactions; call <code>toggle</code> for expansion.</td></tr>
+                <tr><td><code>label</code></td><td><code>{ item: TimelineItemVM }</code></td><td>Replaces the default row label text, for example to add search highlighting.</td></tr>
+                <tr><td><code>primary</code></td><td><code>{ item: TimelineItemVM }</code></td><td>Replaces the default primary parameter text.</td></tr>
               </tbody>
             </table>
           </div>
@@ -249,6 +257,7 @@
             </div>
           </div>
           <DocsCodeBlock label="Usage.vue" language="vue" :code="slotCode" />
+          <DocsCodeBlock label="RowSlot.vue" language="vue" :code="rowSlotCode" />
           <div class="docs__callout">
             Row icons and group icons are components on the view model. Group icons receive
             <code>running | complete</code>; row icons receive the row status. The library bundles no icon set.
@@ -439,6 +448,20 @@ const group = reactive<TimelineGroupVM>({
 const slotCode = `<TimelineGroup :group="group" :expanded="true">
   <template #summary="{ group }">
     <span class="my-summary">{{ group.summary }}</span>
+  </template>
+</TimelineGroup>`
+
+const rowSlotCode = `<TimelineGroup :group="group" :expanded="true">
+  <template #row="{ item, expanded, toggle }">
+    <HostToolRow
+      v-if="item.kind === 'tool'"
+      :data="item.data"
+      :expanded="expanded"
+      @toggle="toggle"
+    />
+    <button v-else type="button" @click="toggle">
+      {{ item.label }}
+    </button>
   </template>
 </TimelineGroup>`
 

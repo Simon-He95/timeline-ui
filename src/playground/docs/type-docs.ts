@@ -66,6 +66,7 @@ export const DOC_TYPE_LIST: DocType[] = [
   icon?: Component
   activatable?: boolean
   detail?: TimelineDetailVM
+  data?: unknown
 }`,
     members: [
       {
@@ -108,8 +109,13 @@ export const DOC_TYPE_LIST: DocType[] = [
         type: 'TimelineDetailVM',
         description: 'Optional expanded panel state. A detail turns the row into a disclosure.',
       },
+      {
+        name: 'data?',
+        type: 'unknown',
+        description: 'Opaque host payload for the row slot. The library never reads it.',
+      },
     ],
-    related: ['TimelineDetailVM', 'TimelineStatus', 'TimelineItemKind'],
+    related: ['TimelineDetailVM', 'TimelineStatus', 'TimelineItemKind', 'TimelineRowSlotProps'],
   },
   {
     name: 'TimelineDetailVM',
@@ -253,6 +259,9 @@ export const DOC_TYPE_LIST: DocType[] = [
   expandedItemIds?: readonly string[]
   lazyDetails?: boolean
   keepDetailsMounted?: boolean
+  unmountCollapsed?: boolean
+  lazyUnmountThreshold?: number
+  staggerEnter?: boolean
 }`,
     members: [
       {
@@ -280,8 +289,89 @@ export const DOC_TYPE_LIST: DocType[] = [
         type: 'boolean',
         description: 'Keep a detail shell mounted after its first open.',
       },
+      {
+        name: 'unmountCollapsed?',
+        type: 'boolean',
+        description: 'Unmount a large collapsed group rail after the close transition.',
+      },
+      {
+        name: 'lazyUnmountThreshold?',
+        type: 'number',
+        description: 'Item count at which unmountCollapsed starts applying. Defaults to 32.',
+      },
+      {
+        name: 'staggerEnter?',
+        type: 'boolean',
+        description: 'Stagger newly added rail items with a per-index enter delay.',
+      },
     ],
     related: ['TimelineGroupVM', 'TimelineGroupEmits'],
+  },
+  {
+    name: 'TimelineRowSlotProps',
+    kind: 'interface',
+    summary: 'Scoped props of the row slot. The slot replaces the whole default row.',
+    declaration: `interface TimelineRowSlotProps {
+  item: TimelineItemVM
+  expanded: boolean
+  toggle: () => void
+  index: number
+}`,
+    members: [
+      {
+        name: 'item',
+        type: 'TimelineItemVM',
+        description: 'The row item, including the opaque host data payload.',
+      },
+      {
+        name: 'expanded',
+        type: 'boolean',
+        description: 'Current controlled or internal expansion state for this row.',
+      },
+      {
+        name: 'toggle',
+        type: '() => void',
+        description: 'Requests an expansion change through the group bookkeeping.',
+      },
+      {
+        name: 'index',
+        type: 'number',
+        description: 'Display index in the group, useful for host enter animations.',
+      },
+    ],
+    related: ['TimelineItemVM', 'TimelineGroupProps'],
+  },
+  {
+    name: 'TimelineGroupExtraSlotProps',
+    kind: 'interface',
+    summary: 'Scoped props of the group-extra slot below the group header.',
+    declaration: `interface TimelineGroupExtraSlotProps {
+  group: TimelineGroupVM
+}`,
+    members: [
+      {
+        name: 'group',
+        type: 'TimelineGroupVM',
+        description: 'The complete group view model.',
+      },
+    ],
+    related: ['TimelineGroupVM'],
+  },
+  {
+    name: 'TimelineRowTextSlotProps',
+    kind: 'interface',
+    summary: 'Scoped props of the label and primary text slots on the default row.',
+    declaration: `interface TimelineRowTextSlotProps {
+  item: TimelineItemVM
+}`,
+    members: [
+      {
+        name: 'item',
+        type: 'TimelineItemVM',
+        description: 'The row whose text is being rendered.',
+      },
+    ],
+    related: ['TimelineItemVM'],
   },
   {
     name: 'TimelineGroupEmits',
@@ -347,7 +437,13 @@ export const DOC_TYPE_GROUPS: Array<{ label: string; names: string[] }> = [
   },
   {
     label: 'Component API',
-    names: ['TimelineGroupProps', 'TimelineGroupEmits'],
+    names: [
+      'TimelineGroupProps',
+      'TimelineGroupEmits',
+      'TimelineRowSlotProps',
+      'TimelineGroupExtraSlotProps',
+      'TimelineRowTextSlotProps',
+    ],
   },
 ]
 
@@ -369,6 +465,22 @@ export interface TimelineItemVM {
   icon?: Component
   activatable?: boolean
   detail?: TimelineDetailVM
+  data?: unknown
+}
+
+export interface TimelineRowSlotProps {
+  item: TimelineItemVM
+  expanded: boolean
+  toggle: () => void
+  index: number
+}
+
+export interface TimelineGroupExtraSlotProps {
+  group: TimelineGroupVM
+}
+
+export interface TimelineRowTextSlotProps {
+  item: TimelineItemVM
 }
 
 export type TimelineDetailVM =

@@ -18,34 +18,61 @@
       <TimelineChevron />
     </button>
 
+    <slot name="group-extra" :group="group" />
+
     <div
       class="tl-reveal"
-      :class="{ 'is-expanded': isExpanded }"
-      :inert="isExpanded ? undefined : true"
-      :aria-hidden="isExpanded ? undefined : 'true'"
+      :class="{ 'is-expanded': revealExpanded }"
+      :inert="revealExpanded ? undefined : true"
+      :aria-hidden="revealExpanded ? undefined : 'true'"
     >
       <div class="tl-reveal__clipper">
-        <div class="tl-group__rail">
-          <TimelineRow
-            v-for="item in group.items"
-            :key="item.id"
-            :item="item"
-            :expanded="isItemExpanded(item.id)"
-            :lazy-details="lazy"
-            :keep-details-mounted="keepMounted"
-            @toggle="toggleItem(item.id)"
-            @retry="emit('detail-retry', item.id)"
-            @activate="emit('activate', item.id)"
-          />
-        </div>
+        <component
+          :is="railComponent"
+          v-if="contentMounted"
+          v-bind="railTransitionProps"
+          class="tl-group__rail"
+        >
+          <template v-for="(item, index) in group.items" :key="item.id">
+            <div v-if="$slots.row" :key="item.id" class="tl-row-slot" :data-enter-index="index">
+              <slot
+                name="row"
+                :item="item"
+                :expanded="isItemExpanded(item.id)"
+                :toggle="() => toggleItem(item.id)"
+                :index="index"
+              />
+            </div>
+            <TimelineRow
+              v-else
+              :key="item.id"
+              :item="item"
+              :expanded="isItemExpanded(item.id)"
+              :lazy-details="lazy"
+              :keep-details-mounted="keepMounted"
+              :data-enter-index="index"
+              @toggle="toggleItem(item.id)"
+              @retry="emit('detail-retry', item.id)"
+              @activate="emit('activate', item.id)"
+            >
+              <template v-if="$slots.label" #label="slotProps">
+                <slot name="label" v-bind="slotProps" />
+              </template>
+              <template v-if="$slots.primary" #primary="slotProps">
+                <slot name="primary" v-bind="slotProps" />
+              </template>
+            </TimelineRow>
+          </template>
+        </component>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, TransitionGroup, type Component } from 'vue'
 import type { TimelineGroupEmits, TimelineGroupProps } from '../types'
+import { useTimelineGroupTransition } from '../group-transition'
 import TimelineChevron from './TimelineChevron.vue'
 import TimelineRow from './TimelineRow.vue'
 
@@ -58,6 +85,9 @@ const props = withDefaults(defineProps<TimelineGroupProps>(), {
   expandedItemIds: undefined,
   lazyDetails: true,
   keepDetailsMounted: true,
+  unmountCollapsed: false,
+  lazyUnmountThreshold: undefined,
+  staggerEnter: false,
 })
 
 const emit = defineEmits<TimelineGroupEmits>()
@@ -88,6 +118,35 @@ const isExpanded = computed(() => props.expanded ?? internalExpanded.value)
 const currentItemIds = computed<readonly string[]>(
   () => props.expandedItemIds ?? [...internalItemIds.value],
 )
+
+const { contentMounted, contentOpen } = useTimelineGroupTransition({
+  expanded: () => isExpanded.value,
+  enabled: () => props.unmountCollapsed === true,
+  itemCount: () => props.group.items.length,
+  lazyThreshold: props.lazyUnmountThreshold,
+})
+const revealExpanded = computed(() =>
+  props.unmountCollapsed === true ? contentOpen.value : isExpanded.value,
+)
+
+const STAGGER_STEP_MS = 40
+
+function setStaggerDelay(element: Element) {
+  const index = Number((element as HTMLElement).dataset.enterIndex ?? 0)
+  ;(element as HTMLElement).style.transitionDelay = `${index * STAGGER_STEP_MS}ms`
+}
+
+const railComponent = computed<Component | string>(() =>
+  props.staggerEnter ? TransitionGroup : 'div',
+)
+const railTransitionProps = computed(() => props.staggerEnter
+  ? {
+      tag: 'div',
+      name: 'group-item',
+      appear: false,
+      onBeforeEnter: setStaggerDelay,
+    }
+  : {})
 
 function isItemExpanded(itemId: string): boolean {
   return currentItemIds.value.includes(itemId)

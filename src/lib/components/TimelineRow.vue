@@ -19,8 +19,12 @@
       <span class="tl-row__icon">
         <component :is="iconComponent" :status="item.status" />
       </span>
-      <span class="tl-row__label">{{ item.label }}</span>
-      <span v-if="item.primary" class="tl-row__primary">{{ item.primary }}</span>
+      <span class="tl-row__label">
+        <slot name="label" :item="item">{{ item.label }}</slot>
+      </span>
+      <span v-if="item.primary" class="tl-row__primary">
+        <slot name="primary" :item="item">{{ item.primary }}</slot>
+      </span>
       <TimelineChevron v-if="hasDetails" />
     </component>
 
