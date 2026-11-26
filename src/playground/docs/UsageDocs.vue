@@ -108,7 +108,7 @@
             <li>The group header reads icon, summary, chevron. The chevron follows the summary instead of being pushed to the edge.</li>
             <li>Rows read icon, label, optional primary parameter and an expandable chevron that follows the row content.</li>
             <li>The rail starts below the group header, aligns with the group icon center by default and is clipped by the reveal.</li>
-            <li>Details align with the row icon center. The shell is transparent; the host panel owns its surface.</li>
+            <li>Details align with the row icon edge. The shell is transparent; the host panel owns its surface.</li>
             <li>The summary slot can change the summary content. The group and row skeleton cannot be replaced.</li>
           </ul>
 
