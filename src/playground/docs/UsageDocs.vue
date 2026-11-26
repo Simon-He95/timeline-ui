@@ -328,7 +328,7 @@
 
           <div class="docs__callout">
             The lab's <strong>Tokens</strong> tab edits every public token live, including the
-            default <code>--timeline-ui-indent</code> of <code>12px</code>.
+            default <code>--timeline-ui-indent</code> of <code>4px</code>.
           </div>
         </section>
 

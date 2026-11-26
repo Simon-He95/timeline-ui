@@ -56,7 +56,7 @@ export const DEFAULT_TOKENS: Record<string, string> = {
   '--timeline-ui-group-padding-x': '0px',
   '--timeline-ui-group-padding-y': '4px',
   '--timeline-ui-group-gap': '6px',
-  '--timeline-ui-indent': '12px',
+  '--timeline-ui-indent': '4px',
   '--timeline-ui-rail-width': '1px',
   '--timeline-ui-rail-offset': '8px',
 
