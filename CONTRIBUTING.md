@@ -29,8 +29,9 @@ CI runs the same checks on every push and pull request.
 
 ## Design constraints
 
-- Keep the group, row and detail skeleton fixed. New public layout variants
-  need a design discussion before they become props or slots.
+- Keep the group, rail and detail shell fixed. The default row may be replaced
+  through the `row` slot; other public layout variants need a design discussion
+  before they become props or slots.
 - Keep product concerns in the host: no i18n strings, stores, data fetching,
   markdown, diff, icons or desktop APIs.
 - The library does not bundle CSS into the JavaScript entry. `style.css` stays
