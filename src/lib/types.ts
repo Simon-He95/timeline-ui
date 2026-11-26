@@ -56,6 +56,36 @@ export interface TimelineItemVM {
   /** Makes a row without details a keyboard-focusable activation target. */
   activatable?: boolean
   detail?: TimelineDetailVM
+  /**
+   * Opaque host payload. The library never reads it; the `row` slot receives
+   * the whole item so a host can render a richer row without widening the
+   * default row view model.
+   */
+  data?: unknown
+}
+
+/**
+ * Scoped props of the `row` slot on `<TimelineGroup>`.
+ *
+ * The slot replaces the default `TimelineRow`, including its header and
+ * details. The group still owns the rail and the expansion bookkeeping; call
+ * `toggle` to request an expansion change.
+ */
+export interface TimelineRowSlotProps {
+  item: TimelineItemVM
+  expanded: boolean
+  toggle: () => void
+  index: number
+}
+
+/** Scoped props of the `group-extra` slot on `<TimelineGroup>`. */
+export interface TimelineGroupExtraSlotProps {
+  group: TimelineGroupVM
+}
+
+/** Scoped props of the `label` / `primary` slots on `<TimelineRow>`. */
+export interface TimelineRowTextSlotProps {
+  item: TimelineItemVM
 }
 
 export interface TimelineGroupVM {
@@ -78,6 +108,15 @@ export interface TimelineGroupProps {
   expandedItemIds?: readonly string[]
   lazyDetails?: boolean
   keepDetailsMounted?: boolean
+  /**
+   * Unmount the rail content after a large group collapses. Off by default:
+   * the standalone component keeps its rows mounted and only hides the reveal.
+   */
+  unmountCollapsed?: boolean
+  /** Item count at which a collapsed group starts unmounting its rail. */
+  lazyUnmountThreshold?: number
+  /** Animate newly added rail items with a per-index stagger. */
+  staggerEnter?: boolean
 }
 
 /** Public events emitted by `<TimelineGroup>`. */

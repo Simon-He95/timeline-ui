@@ -34,9 +34,9 @@ TimelineGroup
 
 ## Design principles
 
-- **Fixed skeleton, variable skin.** The group and row structure is not
-  replaceable through slots. Consumers customize text, icons, detail components
-  and CSS variables.
+- **Fixed group shell, replaceable row skin.** The group header, rail and reveal
+  are fixed. The default row is text/icon based, and a host can replace a whole
+  row through the `row` slot when its card needs richer content.
 - **No product coupling.** No i18n, store, desktop API, MCP, markdown, diff or
   data-fetching dependency. `vue` is the only peer dependency.
 - **Data in, events out.** The host builds the view model, owns detail fetching
@@ -105,6 +105,9 @@ The shell paints immediately, before the panel is available.
 | `expandedItemIds` | `readonly string[] \| undefined` | `undefined` | Controlled open row ids; omit for internal state |
 | `lazyDetails` | `boolean` | `true` | Do not mount a detail before its first open |
 | `keepDetailsMounted` | `boolean` | `true` | Keep a detail shell mounted after its first open |
+| `unmountCollapsed` | `boolean` | `false` | Unmount a large collapsed group's rail after the close transition |
+| `lazyUnmountThreshold` | `number` | `32` | Item count at which `unmountCollapsed` starts applying |
+| `staggerEnter` | `boolean` | `false` | Stagger newly added rail items with a per-index enter delay |
 
 | Event | Payload | Meaning |
 | --- | --- | --- |
@@ -114,8 +117,34 @@ The shell paints immediately, before the panel is available.
 | `detail-retry` | `(itemId: string)` | The detail shell retry button was pressed |
 | `activate` | `(itemId: string)` | An activatable row without details was pressed |
 
-The only slot is `summary`, which receives `{ group: TimelineGroupVM }`. It
-renders inside the group header button and accepts phrasing content only.
+Slots:
+
+- `summary` receives `{ group: TimelineGroupVM }` and renders inside the group
+  header button; it accepts phrasing content only.
+- `group-extra` receives `{ group }` and renders below the header, outside the
+  button. Use it for a collapsed thinking excerpt or similar status line.
+- `row` receives `{ item, expanded, toggle, index }` and replaces the whole
+  default row, including its header and detail. The host owns that row's
+  content and interactions; call `toggle` to request an expansion change.
+- `label` and `primary` receive `{ item }` and replace the default text inside
+  a default row, for example to add search highlighting.
+
+`TimelineItemVM.data` is an opaque host payload. The library never reads it;
+the `row` slot is the supported way to turn it into a richer row.
+
+```vue
+<TimelineGroup :group="group" :expanded="true">
+  <template #row="{ item, expanded, toggle }">
+    <HostToolRow
+      v-if="item.kind === 'tool'"
+      :data="item.data"
+      :expanded="expanded"
+      @toggle="toggle"
+    />
+    <button v-else type="button" @click="toggle">{{ item.label }}</button>
+  </template>
+</TimelineGroup>
+```
 
 The package exports `TimelineGroup` plus its public view-model and event types.
 `TimelineRow`, `TimelineDetails`, `TimelineChevron` and the fallback icon are

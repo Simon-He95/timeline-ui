@@ -10,9 +10,12 @@ export type {
   TimelineDetailStatus,
   TimelineDetailVM,
   TimelineGroupEmits,
+  TimelineGroupExtraSlotProps,
   TimelineGroupProps,
   TimelineGroupVM,
   TimelineItemKind,
   TimelineItemVM,
+  TimelineRowSlotProps,
+  TimelineRowTextSlotProps,
   TimelineStatus,
 } from './types'
