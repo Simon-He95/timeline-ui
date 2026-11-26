@@ -33,8 +33,13 @@
           v-bind="railTransitionProps"
           class="tl-group__rail"
         >
-          <template v-for="(item, index) in group.items" :key="item.id">
-            <div v-if="$slots.row" :key="item.id" class="tl-row-slot" :data-enter-index="index">
+          <template v-if="$slots.row">
+            <div
+              v-for="(item, index) in group.items"
+              :key="item.id"
+              class="tl-row-slot"
+              :data-enter-index="index"
+            >
               <slot
                 name="row"
                 :item="item"
@@ -43,8 +48,10 @@
                 :index="index"
               />
             </div>
+          </template>
+          <template v-else>
             <TimelineRow
-              v-else
+              v-for="(item, index) in group.items"
               :key="item.id"
               :item="item"
               :expanded="isItemExpanded(item.id)"

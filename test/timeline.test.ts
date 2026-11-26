@@ -233,6 +233,28 @@ describe('TimelineGroup', () => {
     expect(wrapper.find('.tl-row__primary .host-primary').text()).toBe('a.ts')
   })
 
+  it('renders custom rows inside the staggered rail', () => {
+    const wrapper = mount(TimelineGroup, {
+      props: {
+        group: makeGroup({
+          items: [
+            { id: 'one', kind: 'tool', status: 'complete', label: 'One' },
+            { id: 'two', kind: 'tool', status: 'complete', label: 'Two' },
+          ],
+        }),
+        staggerEnter: true,
+      },
+      slots: {
+        row: '<template #row="{ item }"><div class="host-row">{{ item.label }}</div></template>',
+      },
+    })
+
+    const rows = wrapper.findAll('.tl-group__rail .tl-row-slot')
+    expect(rows).toHaveLength(2)
+    expect(rows[0]!.attributes('data-enter-index')).toBe('0')
+    expect(rows[1]!.attributes('data-enter-index')).toBe('1')
+  })
+
   it('keeps a custom row element when the host replaces the item payload', async () => {
     const group = ref<TimelineGroupVM>(makeGroup({
       items: [
