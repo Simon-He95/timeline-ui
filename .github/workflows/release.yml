@@ -38,9 +38,15 @@ jobs:
           else
             echo "published=false" >> "$GITHUB_OUTPUT"
           fi
-      - if: steps.version.outputs.published != 'true'
-        run: npm publish --access public --provenance
+      - name: Publish to npm
+        if: steps.version.outputs.published != 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+            echo "NPM_TOKEN is not configured; skipping npm publish. Use the local release command for staged publishing."
+            exit 0
+          fi
+          npm publish --access public --provenance
       - if: steps.version.outputs.published == 'true'
         run: echo "@simon_he/timeline-ui@${{ steps.version.outputs.value }} is already published; skipping npm publish."

@@ -90,8 +90,9 @@ npm stage approve <stage-id> --registry=https://registry.npmjs.org/
 
 The workflow in `.github/workflows/release.yml` can publish a version tag. It
 checks the registry first and skips the publish step when the version already
-exists.
+exists. When `NPM_TOKEN` is not configured, it skips the publish step instead
+of failing; the local release command remains the primary publish path.
 
-- Add an `NPM_TOKEN` secret with access to `@simon_he`.
+- Add an `NPM_TOKEN` secret with access to `@simon_he` if CI should publish.
 - Keep the tag and `package.json` version in sync.
 - Push the tag.
